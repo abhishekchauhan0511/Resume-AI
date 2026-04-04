@@ -30,6 +30,17 @@ export function Header() {
               📋 Screener
             </button>
           </Link>
+          <Link to="/analytics">
+  <button
+    className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
+      location.pathname === '/analytics'
+        ? 'bg-white text-primary shadow-sm'
+        : 'text-muted-foreground hover:text-foreground'
+    }`}
+  >
+    📊 Analytics
+  </button>
+</Link>
           <Link to="/builder">
             <button
               className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${

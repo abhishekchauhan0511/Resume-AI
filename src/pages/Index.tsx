@@ -16,6 +16,7 @@ import type { AnalysisResult } from '@/types/resume';
 import { Loader2, Zap, FileSearch, Sparkles, Building2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { exportResultsAsPDF } from '@/lib/export-pdf';
+import { saveAnalysis } from '@/lib/db';
 
 const Index = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -42,6 +43,13 @@ const Index = () => {
       const analysis = await analyzeResume(resumeText, jobDescription);
       const ats = checkATSCompatibility(resumeText, jobDescription);
       setAtsResult(ats);
+      await saveAnalysis(
+  analysis.matchPercentage,
+  ats.overallScore,
+  analysis.matchedSkills,
+  analysis.missingSkills,
+  jobDescription
+);
       setResult(analysis);
       toast.success('Analysis complete!');
     } catch (error) {

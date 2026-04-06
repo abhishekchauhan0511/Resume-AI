@@ -17,6 +17,7 @@ import { Loader2, Zap, FileSearch, Sparkles, Building2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { exportResultsAsPDF } from '@/lib/export-pdf';
 import { saveAnalysis } from '@/lib/db';
+import { RealJobs } from '@/components/RealJobs';
 
 const Index = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -123,6 +124,7 @@ const Index = () => {
              {atsResult && <ATSScore result={atsResult} />}
             <ImprovedResume content={result.improvedResume} />
             <JobRecommendations recommendations={result.jobRecommendations} />
+            <RealJobs skills={result.resumeSkills} />
           </div>
         )}
       </main>
